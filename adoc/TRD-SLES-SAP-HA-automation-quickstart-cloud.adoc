@@ -601,7 +601,7 @@ unattended, resulting in a failed deployment.  It is strongly advised to retain 
 endif::[]
 
 ifeval::[ "{cloud}" == "GCP" ]
-GCP
+TIP: The GCP Cloud Shell has a timeout of around 20 minutes. After that period, the shell session will be closed if left unattended, resulting in a failed deployment. It is strongly advised to retain focus on the GCP Cloud Shell window to ensure the timeout does not occur.
 endif::[]
 
 If successful, the output will be the public IP addresses for the cluster nodes.
