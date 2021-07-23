@@ -20,7 +20,7 @@ For simplicity, this guide uses the Cloud Shell to perform the deployment, as it
 
 It is possible to use a local Linux or macOS computer easily, but some commands may need modification or omission.
 
-The architecture for the deployment is similar to the below.
+The architecture for the deployment is similar to the one below:
 
 ifeval::[ "{cloud}" == "Azure" ]
 AZURE
