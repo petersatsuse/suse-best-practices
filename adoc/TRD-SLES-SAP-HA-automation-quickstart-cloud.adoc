@@ -230,6 +230,7 @@ $ cp <GCP Service Account Key> suse-sap-automation/ha-sap-terraform-deployments/
 ----
 endif::[]
 
+NOTE: If SSH keys already exist, the next step can be skipped.
 
 Next, generate SSH keys to allow for inter-cluster communication between the provisioned nodes.
 If SSH keys already exist, the next step can be skipped.
