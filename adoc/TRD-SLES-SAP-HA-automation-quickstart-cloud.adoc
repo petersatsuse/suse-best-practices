@@ -222,6 +222,12 @@ $ mkdir suse-sap-automation
 $ cd suse-sap-automation
 $ git clone --branch 7.2.0 https://github.com/SUSE/ha-sap-terraform-deployments.git
 ----
+
+Next, move the generated GCP Service Account Key to the SUSE SAP Automation GCP directory:
+----
+$ cd ~
+$ cp <GCP Service Account Key> suse-sap-automation/ha-sap-terraform-deployments/gcp
+----
 endif::[]
 
 
