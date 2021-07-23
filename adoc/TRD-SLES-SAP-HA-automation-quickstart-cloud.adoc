@@ -31,7 +31,7 @@ image::TRD_SLES-SAP-HA-automation-quickstart-cloud-aws-automation-architecture.j
 endif::[]
 
 ifeval::[ "{cloud}" == "GCP" ]
-GCP
+image::TRD_SLES-SAP-HA-automation-quickstart-cloud-gcp-automation-architecture.png[width=470]
 endif::[]
 
 The project will perform the following:
