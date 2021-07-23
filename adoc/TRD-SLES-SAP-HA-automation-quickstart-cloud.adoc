@@ -41,7 +41,7 @@ The project will perform the following actions:
 * Configuring the operating system for the SAP workload
 * Running the SAP HANA installation
 * Configuring SAP HANA System Replication (HSR)
-* Configuring SUSE High Availability cluster components and resources
+* Configuring SUSE Linux Enterprise High Availability cluster components and resources
 
 
 == Configuring the Cloud Shell
