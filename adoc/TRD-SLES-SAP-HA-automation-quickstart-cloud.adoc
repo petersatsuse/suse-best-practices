@@ -16,10 +16,9 @@ This document will walk you through the deployment of a simple two-node SAP HANA
 This project uses Terraform and Salt to deploy and configure the operating system (SUSE Linux Enterprise Server for SAP Applications), SAP software, and SUSE Linux Enterprise High Availability (HA) Cluster.
 If extensive configuration and customization are required, refer to the project documentation at https://github.com/SUSE/ha-sap-terraform-deployments
 
-For simplicity, this guide uses the Cloud Shell to perform the deployment,
-as it provides easy access to most of the required tooling.
+For simplicity, this guide uses the Cloud Shell to perform the deployment, as it provides easy access to most of the required tooling.
 
-It is possible to easily use a local Linux or macOS computer, but some of the commands may need modification or omission.
+It is possible to use a local Linux or macOS computer easily, but some commands may need modification or omission.
 
 The architecture for the deployment is similar to the below.
 
