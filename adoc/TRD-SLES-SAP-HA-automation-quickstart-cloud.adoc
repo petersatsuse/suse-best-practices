@@ -3,10 +3,12 @@
 // Set variable for Cloud.  This can be "Azure","AWS" or "GCE"
 //:cloud: Azure
 :cloud: AWS
+// CSP Name: Google Cloud Platform | Microsoft Azure | Amazon Web Services
+:csp_name: Google Cloud Platform
 :sles: SUSE Linux Enterprise Server
 :sles4sap: {sles} for SAP Applications
 
-= Using SUSE Automation to Deploy an SAP HANA Cluster: Getting Started
+= Using SUSE Automation to Deploy an SAP HANA Cluster: Getting Started {csp_name}
 
 == About the guide
 
