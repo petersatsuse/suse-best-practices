@@ -685,7 +685,10 @@ This method will ensure all AWS resource, such as instances, volumes, VPCs, and 
 endif::[]
 
 ifeval::[ "{cloud}" == "GCP" ]
-GCP
+This method will ensure all GCP resources, such as instances, disks, VPCs, and roles are cleaned up. You need to delete the following GCP components manually:
+
+* GCP Cloud Storage bucket
+* GCP Project
 endif::[]
 
 ++++
