@@ -12,7 +12,7 @@
 
 == About the guide
 
-This document will walk you through the deployment of a simple two-node SAP HANA HA Cluster using the SUSE Automation Project.
+This document will walk you through the deployment of a simple two-node SAP HANA HA Cluster using the SUSE Automation Project for SAP Solutions on {csp_name}.
 This project uses Terraform and Salt to deploy and configure the operating system, SAP software and High Availability (HA) Cluster.
 If extensive configuration and customization are required, refer to the project documentation at https://github.com/SUSE/ha-sap-terraform-deployments
 
