@@ -210,7 +210,6 @@ The SUSE Automation code is published in GitHub. The following command will clon
 cd ~
 git clone --depth 1 --branch 7.0.0 https://github.com/SUSE/ha-sap-terraform-deployments
 ----
-
 endif::[]
 
 ifeval::[ "{cloud}" == "GCP" ]
@@ -248,14 +247,13 @@ ssh-keygen -t rsa -N ''
 The files that need to be configured are contained in a subdirectory of the project. Use that as the working directory:
 
 ifeval::[ "{cloud}" == "Azure" ]
+AZURE
 endif::[]
 
 ifeval::[ "{cloud}" == "AWS" ]
-
 ----
 cd ~/ha-sap-terraform-deployments/aws
 ----
-
 endif::[]
 
 ifeval::[ "{cloud}" == "GCP" ]
@@ -267,30 +265,49 @@ endif::[]
 ifeval::[ "{cloud}" == "Azure" ]
 A Terraform template is provided. For a demo environment, this will need around {azure_par_count} parameters modifying.
 endif::[]
+
 ifeval::[ "{cloud}" == "AWS" ]
 A Terraform template is provided. For a demo environment, this will need around {aws_par_count} parameters modifying.
 endif::[]
+
 ifeval::[ "{cloud}" == "GCP" ]
 A Terraform template is provided. For a demo environment, this will need around {gcp_par_count} parameters modifying.
 endif::[]
 
+ifeval::[ "{cloud}" == "Azure" ]
 Copy the Terraform example file to `terraform.tfvars`.
 
 ----
 cp terraform.tfvars.example terraform.tfvars
 ----
+endif::[]
 
-Edit `terraform.tfvars` and modify as explained below.
-If you are duplicating the lines before modification, ensure the original is commented out, or the deployment will fail.
+ifeval::[ "{cloud}" == "AWS" ]
+Copy the Terraform example file to `terraform.tfvars`.
 
-Firstly, choose the region for the deployment.
+----
+cp terraform.tfvars.example terraform.tfvars
+----
+endif::[]
 
+ifeval::[ "{cloud}" == "GCP" ]
+Rename the Terraform example file to `terraform.tfvars`:
+
+----
+$ mv terraform.tfvars.example terraform.tfvars
+-----
+endif::[]
+
+
+Edit the `terraform.tfvars` file and modify it as explained below. If you are duplicating the lines before modification, ensure the original is commented out, or the deployment will fail.
 
 ifeval::[ "{cloud}" == "Azure" ]
 AZURE
 endif::[]
 
 ifeval::[ "{cloud}" == "AWS" ]
+
+Firstly, choose the region for the deployment.
 
 ----
 # Region where to deploy the configuration
@@ -300,11 +317,14 @@ aws_region = "eu-central-1"
 endif::[]
 
 ifeval::[ "{cloud}" == "GCP" ]
-GCP
+First, choose the GCP Project ID for the deployment:
+----
+# GCP project id
+project = "<PROJECT ID>"
+----
 endif::[]
 
-This setting provides Terraform the credentials to deploy the infrastructure on the cloud.
-
+The following setting enable Terraform to deploy the infrastructure on the cloud:
 
 ifeval::[ "{cloud}" == "Azure" ]
 AZURE
@@ -328,10 +348,22 @@ If not used, ensure the following lines are commented out or the deployment will
 endif::[]
 
 ifeval::[ "{cloud}" == "GCP" ]
-GCP
+Choose the GCP Service Account Key file path. Terraform will use the GCP Service Account Key file created above:
+
+----
+# Credentials file for GCP
+gcp_credentials_file = "<GCP Service Account Key Path and Name>"
+----
+
+Choose the GCP region for the deployment:
+
+----
+# Region where to deploy the configuration
+region = "<GCP Region Name>"
+----
 endif::[]
 
-The following parameters select the version of SUSE Linux Enterprise Server for SAP Applications to deploy, and where to deploy from.
+The following parameters select the version of SUSE Linux Enterprise Server for SAP Applications to deploy:
 
 ifeval::[ "{cloud}" == "Azure" ]
 AZURE
@@ -349,7 +381,9 @@ os_owner = "679593333241"
 endif::[]
 
 ifeval::[ "{cloud}" == "GCP" ]
-GCP
+----
+os_image = "suse-sap-cloud/sles-15-sp2-sap"
+----
 endif::[]
 
 Next, enter the path for the public and private SSH keys that were generated earlier.
@@ -362,7 +396,18 @@ public_key_location = "/path/to/your/public/ssh/key"
 private_key_location = "/path/to/your/private/ssh/key"
 ----
 
-To keep the cluster architecture and deployment simple and to provide additional packages needed to deploy, uncomment and set the following parameters:
+ifeval::[ "{cloud}" == "GCP" ]
+Below is an example for the default created SSH keys:
+----
+# SSH Public key location to configure access to the remote instances
+public_key  = "~/.ssh/id_rsa.pub"
+
+# Private SSH Key location
+private_key = "~/.ssh/id_rsa"
+----
+endif::[]
+
+To keep the cluster architecture and deployment simple and to provide additional packages needed to deploy, uncomment, update or set the following parameters:
 
 ifeval::[ "{cloud}" == "Azure" ]
 AZURE
@@ -379,30 +424,48 @@ pre_deployment = true
 endif::[]
 
 ifeval::[ "{cloud}" == "GCP" ]
-GCP
+Set the deployment software repository URL:
+
+----
+ha_sap_deployment_repo = "https://download.opensuse.org/repositories/network:/ha-clustering:/sap-deployments:/v7/"
+----
+
+Then, enable the `pre_deployment` parameter:
+
+----
+pre_deployment = true
+----
+
+And disable the Bastion Host Server creation parameter `bastion_enabled`:
+
+----
+bastion_enabled = false
+----
 endif::[]
 
-Next, set some options for the HANA instances. The following selects the instance name and host name prefix for the deployment.
+Next, set some options for the HANA instances.
 
 ifeval::[ "{cloud}" == "Azure" ]
 AZURE
 endif::[]
 
 ifeval::[ "{cloud}" == "AWS" ]
-
+The following selects the instance name and host name prefix for the deployment.
 ----
 hana_instancetype = "r3.8xlarge"
 name = "hana"
 ----
-
 endif::[]
 
 ifeval::[ "{cloud}" == "GCP" ]
-GCP
+Set which SAP HANA GCP instance machine type should be selected:
+----
+machine_type = "n1-highmem-32"
+----
 endif::[]
 
 
-Modify the following to point to SAP media that was uploaded to the storage location.
+Modify the following parameter to point to SAP media that was uploaded to the storage location:
 
 ifeval::[ "{cloud}" == "Azure" ]
 AZURE
@@ -419,20 +482,22 @@ hana_archive_file = "5105338_part1.exe"
 endif::[]
 
 ifeval::[ "{cloud}" == "GCP" ]
-GCP
+----
+hana_inst_master = "mysapmedia/51054623"
+----
 endif::[]
 
 Finally, to ensure a fully automated deployment, it is possible to set passwords within the `terraform.tfvars` file.
-If the parameters are not set in this file, they must be entered when running the deployment.
 
-Uncomment and set the following:
+Uncomment and set the following parameters:
 
 ----
 hana_master_password = "YourPassword1234"
-netweaver_master_password = "SuSE1234"
+netweaver_master_password = "YourPassword1234"
 ----
 
 NOTE: All passwords must conform to SAP password policies or the deployment will fail.
+TIP: If the parameters are not set in this file, they must be entered when running the deployment.
 
 
 Optional: If a monitoring instance is required as part of the deployment, find and uncomment the following:
