@@ -146,10 +146,18 @@ a. SAR file and SAPCAR executable (SAP HANA Database only)
 b. Multipart exe/RAR files
 c. Extracted media
 
-This guide recommends the simplest method which is the multipart exe/RAR files.
+With the correct entitlement, SAP media can be downloaded from the SAP Web site at https://support.sap.com/en/my-support/software-downloads.html .
 
-With the correct entitlement, SAP media can be downloaded from the SAP Web site at
-https://support.sap.com/en/my-support/software-downloads.html
+NOTE: Each of the above-three-mentioned SAP media options has its own advantage and disadvantages. For example, The _Extracted Media_ option provides the fastest deployment time, but it must also upload the extracted SAP media to the used cloud storage. On the other hand, the _Multipart exe/RAR files_ option takes more deployment time, but it requires only a few files to be uploaded to the used cloud storage.
+
+
+
+ifeval::[ "{cloud}" == "Azure" ]
+AZURE
+endif::[]
+
+ifeval::[ "{cloud}" == "AWS" ]
+This guide recommends the simplest method which is the multipart exe/RAR files.
 
 The versions listed below are for illustration. When downloading the multipart files for SAP HANA, use your required version.
 
@@ -160,12 +168,6 @@ The versions listed below are for illustration. When downloading the multipart f
 51053381_part4.rar
 ----
 
-
-ifeval::[ "{cloud}" == "Azure" ]
-AZURE
-endif::[]
-
-ifeval::[ "{cloud}" == "AWS" ]
 For AWS, an S3 bucket is used.
 
 Using the AWS Console, perform the following actions:
@@ -179,7 +181,16 @@ image::TRD_SLES-SAP-HA-automation-quickstart-cloud-s3-bucket.png[width=470]
 endif::[]
 
 ifeval::[ "{cloud}" == "GCP" ]
-GCP
+This guide recommends the simplest method which is the extracted media. 
+
+This guide uses the most recent SAP HANA media, _SAP HANA 2.0 SPS05_. The SAP HANA media file name downloaded at the time of creating this guide is `51054623.ZIP`. Follow the SAP instructions to extract the SAP HANA media. For illustration, the final extracted directory name is `51054623`.
+
+A GCP Cloud Storage bucket is used to host the SAP HANA extracted media. Using the GCP Console, perform the following actions:
+
+* Create a new GCP bucket. (The example shows a GCP Cloud Storage bucket called `mysapmedia`, but a unique name should be used.)
+* Upload the SAP HANA media extracted directory to the GCP Cloud Storage bucket. The following figure shows the uploaded SAP HANA media extracted directory:
+
+image::trd_sles-sap-ha-automation-quickstart-cloud-gcp-bucket.png[width=470]
 endif::[]
 
 
