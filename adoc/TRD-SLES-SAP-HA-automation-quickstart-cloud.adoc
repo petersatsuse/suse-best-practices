@@ -128,14 +128,19 @@ terraform --version
 endif::[]
 
 ifeval::[ "{cloud}" == "GCP" ]
-GCP
+Terraform is already deployed as part of the GCP Cloud Shell. The following command output shows the Terraform version used at the time of creating this guide:
+
+----
+$ terraform -v
+Terraform v1.0.0
+on linux_amd64
+----
 endif::[]
 
 
 == Preparing the SAP media
 
-The SAP Media needs to be made available so it can be accessed during the deployment.
-The SUSE Automation project allows for three methods for presenting the SAP media:
+The SAP Media needs to be made available so it can be accessed during the deployment. The SUSE Automation for SAP Solutions project allows for three methods for presenting the SAP media:
 
 a. SAR file and SAPCAR executable (SAP HANA Database only)
 b. Multipart exe/RAR files
