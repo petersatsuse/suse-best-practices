@@ -579,8 +579,7 @@ endif::[]
 
 == Deploying the project
 
-When running the deployment, Terraform will create and name resources on AWS based on the 'workspace' in use.
-It is highly recommended to create a unique workspace from which to run the deployment.
+Terraform will create and name resources on the Cloud infrastructure when running the deployment based on the "workspace" in use. It is highly recommended to create a unique workspace from which to run the deployment.
 
 ----
 terraform init
