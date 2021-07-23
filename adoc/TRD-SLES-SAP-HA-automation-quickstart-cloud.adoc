@@ -604,9 +604,68 @@ ifeval::[ "{cloud}" == "GCP" ]
 TIP: The GCP Cloud Shell has a timeout of around 20 minutes. After that period, the shell session will be closed if left unattended, resulting in a failed deployment. It is strongly advised to retain focus on the GCP Cloud Shell window to ensure the timeout does not occur.
 endif::[]
 
-If successful, the output will be the public IP addresses for the cluster nodes.
+If successful, the output lists the public IP addresses for the cluster nodes.
 
+ifeval::[ "{cloud}" == "Azure" ]
+AZURE
+endif::[]
+
+ifeval::[ "{cloud}" == "AWS" ]
 image::TRD_SLES-SAP-HA-automation-quickstart-cloud-s3-bucket-aws-automation-complete.png[width=470]
+endif::[]
+
+ifeval::[ "{cloud}" == "GCP" ]
+This will look similar to the following considering the different Public IP addresses for each deployment:
+
+----
+module.hana_node.module.hana_provision.null_resource.provision[1] (remote-exec): Summary for local
+module.hana_node.module.hana_provision.null_resource.provision[1] (remote-exec): -------------
+module.hana_node.module.hana_provision.null_resource.provision[1] (remote-exec): Succeeded: 33 (changed=23)
+module.hana_node.module.hana_provision.null_resource.provision[1] (remote-exec): Failed:     0
+module.hana_node.module.hana_provision.null_resource.provision[1] (remote-exec): -------------
+module.hana_node.module.hana_provision.null_resource.provision[1] (remote-exec): Total states run:     33
+module.hana_node.module.hana_provision.null_resource.provision[1] (remote-exec): Total run time: 1028.670 s
+module.hana_node.module.hana_provision.null_resource.provision[1] (remote-exec): Wed Jun 23 10:14:22 UTC 2021::demo-hana02::[INFO] deployment done
+module.hana_node.module.hana_provision.null_resource.provision[1]: Creation complete after 27m24s [id=3463680564647535989]
+
+Apply complete! Resources: 26 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+bastion_public_ip = ""
+cluster_nodes_ip = [
+  "10.0.0.10",
+  "10.0.0.11",
+]
+cluster_nodes_name = [
+  "demo-hana01",
+  "demo-hana02",
+]
+cluster_nodes_public_ip = tolist([
+  "34.127.16.75",
+  "34.145.94.26",
+])
+cluster_nodes_public_name = []
+drbd_ip = []
+drbd_name = []
+drbd_public_ip = []
+drbd_public_name = []
+iscsisrv_ip = ""
+iscsisrv_name = ""
+iscsisrv_public_ip = ""
+iscsisrv_public_name = []
+monitoring_ip = ""
+monitoring_name = ""
+monitoring_public_ip = ""
+monitoring_public_name = ""
+netweaver_ip = []
+netweaver_name = []
+netweaver_public_ip = []
+netweaver_public_name = []
+----
+endif::[]
+
+
 
 
 == Tearing down
