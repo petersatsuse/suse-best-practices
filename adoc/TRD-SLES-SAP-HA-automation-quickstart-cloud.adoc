@@ -7,6 +7,9 @@
 :csp_name: Google Cloud Platform
 :sles: SUSE Linux Enterprise Server
 :sles4sap: {sles} for SAP Applications
+:gcp_par_count: 13
+:aws_par_count: 10
+:azure_par_count: 13
 
 = Using SUSE Automation to Deploy an SAP HANA Cluster: Getting Started {csp_name}
 
@@ -261,8 +264,16 @@ $ cd ~/suse-sap-automation/ha-sap-terraform-deployments/gcp
 ----
 endif::[]
 
+ifeval::[ "{cloud}" == "Azure" ]
+A Terraform template is provided. For a demo environment, this will need around {azure_par_count} parameters modifying.
+endif::[]
+ifeval::[ "{cloud}" == "AWS" ]
+A Terraform template is provided. For a demo environment, this will need around {aws_par_count} parameters modifying.
+endif::[]
+ifeval::[ "{cloud}" == "GCP" ]
+A Terraform template is provided. For a demo environment, this will need around {gcp_par_count} parameters modifying.
+endif::[]
 
-A template is provided.  For a demo environment this will need around 10 parameters modifying.
 Copy the Terraform example file to `terraform.tfvars`.
 
 ----
