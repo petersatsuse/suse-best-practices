@@ -242,7 +242,7 @@ ssh-keygen -t rsa -N ''
 
 === Configuring the deployment options and modifying the Terraform variables
 
-The files that need to be configured are contained in a subdirectory of the project. Use that as the working directory.
+The files that need to be configured are contained in a subdirectory of the project. Use that as the working directory:
 
 ifeval::[ "{cloud}" == "Azure" ]
 endif::[]
@@ -256,7 +256,9 @@ cd ~/ha-sap-terraform-deployments/aws
 endif::[]
 
 ifeval::[ "{cloud}" == "GCP" ]
-GCP
+----
+$ cd ~/suse-sap-automation/ha-sap-terraform-deployments/gcp
+----
 endif::[]
 
 
