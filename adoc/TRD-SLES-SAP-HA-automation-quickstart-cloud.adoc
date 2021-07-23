@@ -573,7 +573,7 @@ Create the following policy and attach it to the IAM user running the deployment
 endif::[]
 
 ifeval::[ "{cloud}" == "GCP" ]
-GCP
+Ensure that the GCP Project used to host the SAP HANA HA cluster meets the infrastructure quota requirements set by Google Cloud. For more info, refer to https://cloud.google.com/solutions/sap/docs/sap-hana-planning-guide#quotas
 endif::[]
 
 
