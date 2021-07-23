@@ -34,14 +34,14 @@ ifeval::[ "{cloud}" == "GCP" ]
 image::TRD_SLES-SAP-HA-automation-quickstart-cloud-gcp-automation-architecture.png[width=470]
 endif::[]
 
-The project will perform the following:
+The project will perform the following actions:
 
-* Deploy infrastructure - including VPC, subnets, IAM roles etc.
-* Deploy instances -  2 x SAP HANA instances
-* Configure the operating system for the SAP workload
-* Run the SAP HANA installation
-* Configure SAP HANA System Replication (HSR)
-* Configure SUSE High Availability cluster components and resources
+* Deploying infrastructure - including VPC, subnets, IAM roles, etc.
+* Deploying instances -  2 x SAP HANA instances
+* Configuring the operating system for the SAP workload
+* Running the SAP HANA installation
+* Configuring SAP HANA System Replication (HSR)
+* Configuring SUSE High Availability cluster components and resources
 
 
 == Configuring the Cloud Shell
