@@ -36,7 +36,16 @@ endif::[]
 
 The project will perform the following actions:
 
-* Deploying infrastructure - including VPC, subnets, IAM roles, etc.
+ifeval::[ "{cloud}" == "Azure" ]
+* AZURE
+endif::[]
+ifeval::[ "{cloud}" == "AWS" ]
+* Deploying infrastructure - including Virtual Private Network (VPC), subnets, IAM roles, etc.
+endif::[]
+ifeval::[ "{cloud}" == "GCP" ]
+* Deploying infrastructure - including Virtual Private Network (VPC), subnets, IAM roles, etc.
+endif::[]
+
 * Deploying instances -  2 x SAP HANA instances
 * Configuring the operating system for the SAP workload
 * Running the SAP HANA installation
